@@ -7,20 +7,19 @@
 > 初次使用goon，请先运行一遍，会在当前目录下生成conf.yml。配置完conf.yml后便可正常使用。
 
 # 0x02 模块特点
-
-> -2.1、fofascan 模块，可以获取超过会员数量限制的资产，如普通会员可以获取超过 10000+资产，高级会员可以获取超过 100000+资产，同时也支持批量查询。（希望 FOFA 官方不会介意）  
-> -2.2、pluginscan 模块，自定义 yml 插件扫描，可以自定义指纹，也可以自定义 POC，可参考 plugin 下的 cms-zentao.yml 和 DSS-file-read.yml及demo/plugin.yml。  
-> -2.3、autoscan 模块，自定义自动化扫描，可以将扫描模块联动起来。
+  
+> -2.1、pluginscan 模块，自定义 yml 插件扫描，可以自定义指纹，也可以自定义 POC，可参考 plugin 下的 cms-zentao.yml 和 DSS-file-read.yml及demo/plugin.yml。  
+> -2.2、autoscan 模块，自定义自动化扫描，可以将扫描模块联动起来。
 
 # 0x03 开发环境
 
-    go1.15.3 windows/amd64
+    go version go1.16.5 windows/amd64
 
 # 0x04 模块介绍
 
 ## 0x041 portscan 模块
 
-> portscan目前只是简单的TCP扫描，所以扫描速度并不是很快，但也能满足日常使用，之后会考虑加入SYN模式扫描。
+> portscan除了扫描端口外，还可以通过-web y命令来扫描http和https。
 
 > 参数如下：
 
@@ -70,7 +69,7 @@
 
 ## 0x044 fofascan 模块
 
-> 除了常规的单个key获取资产外还支持批量key获取资产，当然最重要的是可以获取超过会员数量限制的资产，如普通会员可以获取超过10000+资产，高级会员可以获得超过100000+资产。
+> fofa查询，可选择对fofa返回的host自动添加"http://"。
 
 > 参数如下：
 
@@ -78,14 +77,13 @@
     -ifile  :扫描文件，待获取key按行保存
     -ofile  :输出文件，默认保存到./result下
     -num    :请求数量，如:100、10000，默认从配置文件读取
-            如果num为-1则为智能模式，智能模式下会不限数量自动获取资产
             智能模式只支持单个key获取方式。
     -fields :返回资产类型如:ip,port，默认从配置文件读取
 
 > 语法参考：
 
-    goon_amd64_windows.exe -mode fofascan -key port="8081" -num -1
-    goon_amd64_windows.exe -mode fofascan -ifile keys.txt -num 100 -fields=ip,host,title
+    goon_amd64_windows.exe -mode fofascan -key port="8081" -num 100 -web y -fields host
+    goon_amd64_windows.exe -mode fofascan -ifile keys.txt
 
 ## 0x045 pluginscan 模块
 
@@ -115,12 +113,8 @@
 
     goon_amd64_windows.exe -mode autoscan -ifile ips.txt
     
-# 0x05 其他
-> win:e1638bdd607cf2fac478bb3c58aaa380  
-> lin:353d14e558ac09315c214ddfe3f9d7d6  
-> mac:ef2de9f6c305b44e602debb0e99ae469  
 
-# 0x06 结语
+# 0x05 结语
   
 > 1、感谢 key 佬和巨魔的宝贵建议  
 > 2、欢迎各位师傅提供宝贵意见
