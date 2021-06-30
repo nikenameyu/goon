@@ -13,7 +13,7 @@ rules:                                        #rules
     Connection: "null"
     Content-Length: "null"
     Content-Type: "null"
-    Host: "null"
+    Host: "{{host}}"                        #调用host
     Origin: "null"
     Pragma: "null"
     Referer: "null"
@@ -25,10 +25,12 @@ rules:                                        #rules
     header: Apache                            #请求返回的header
     body: "version"                           #请求返回的body
   output: "cms:zentao-01"
-- method: GET
-  path: "/zentao/index.php?mode=getconfig"
+- method: POST
+  path: "{{host}}/login.jsp"                 #调用host
   follow_redirects: false
+  body: |                                     #请求体
+    "user=i11us0ry&&pass=i11us0ry"
   expression:
     code: 200
-    body: "requestType"
-  output: "cms:zentao-02"
+    body: "success"
+  output: "login success"
