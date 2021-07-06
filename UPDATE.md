@@ -19,5 +19,5 @@
 > 2、 解决了一些小 bug
 
 # 2021-07-06 goon_beta_v1.3
-1、 优化 titlescan
+1、 优化 titlescan  
 2、 解决了一些小 bug
