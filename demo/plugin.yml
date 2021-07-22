@@ -1,6 +1,6 @@
 # plugin的目的是做指纹识别及轻量级漏洞验证,固不会增加太多功能
 name: webinfo
-# 此处And表示的是下面rules的逻辑,为false时只要其中一个rule为真,则扫描为真,适用于指纹识别
+# 此处And表示的是下面rules的逻辑,当And为false时只要其中一个rule为真,则扫描为真,适用于指纹识别
 # And为true为true时表示所有rule为真,则扫描为真,适用于漏洞验证
 And: false
 # rule,规则库,以method开头
