@@ -2,13 +2,15 @@
 
 > 我看到了一些零件，于是打算把他们拼接起来，这便有了goon。
 
-> goon，是一款基于golang开发的扫描工具，暂时支持portscan、webscan、titlescan、dirscan、fofascan、pluginscan等模块功能，当然也支持将这些模块联动起来的autoscan。后期也会慢慢加入其他零件模块，感谢您的使用，也希望您能提供宝贵意见。
+> goon，是一款基于golang开发的扫描及爆破工具功能如下：  
+> 扫描模式支持ip探活(ipscan)、端口扫描(portscan)、web扫描(webscan -web y)、title扫描(titlescan)、dirscan、备份文件扫描(backscan)、插件扫描(pluginscan)、自定义扫描(autoscan)。  
+> 爆破模式支持ftp爆破、mssq爆破、mysql爆破、postgres爆破、redis爆破、ssh爆破。
 
-> 初次使用goon，请先运行一遍，会在当前目录下生成conf.yml。配置完conf.yml后便可正常使用。
+> 初次使用goon，可以使用自带的conf.yml，也可以先运行一遍goon，会在当前目录下生成conf.yml。配置完conf.yml后便可正常使用。
 
 # 0x02 模块特点
-  
-> -2.1、pluginscan 模块，自定义 yml 插件扫描，可以自定义指纹，也可以自定义 POC，可参考 plugin 下的 cms-zentao.yml 和 DSS-file-read.yml及demo/plugin.yml。  
+
+> -2.1、pluginscan 模块，自定义 yml 插件扫描，可以自定义指纹，也可以自定义 POC，可参考 plugin 下及demo下的例子。  
 > -2.2、autoscan 模块，自定义自动化扫描，可以将扫描模块联动起来。
 
 # 0x03 开发环境
@@ -79,6 +81,7 @@
     -num    :请求数量，如:100、10000，默认从配置文件读取
             智能模式只支持单个key获取方式。
     -fields :返回资产类型如:ip,port，默认从配置文件读取
+    -web    :y表示对host添加http://，默认为n
 
 > 语法参考：
 
@@ -103,7 +106,7 @@
 
 ## 0x046 autoscan 模块
 
-> 自定义扫描模块，在conf.yml中配置，y表示启动模块扫描。目前支持portscan、titlescan、pluginscan。在配置都为y的情况下，扫描资产web，然后将扫描结果result进行title扫描和plugin扫描。
+> 自定义扫描模块，在conf.yml中配置，y表示启动模块扫描。目前支持ipscan、portscan、titlescan、pluginscan、backscan、brute。
 
 > 参数如下：
 
@@ -113,6 +116,34 @@
 
     goon_amd64_windows.exe -mode autoscan -ifile ips.txt
     
+## 0x047 backscan 模块
+
+> 对资产进行备份文件扫描，采用head请求，只扫描zip、rar、7z、gzip文件。
+
+> 参数如下：
+
+    -thread:默认从配置文件读取
+    -ifile :扫描文件，ip按行保存
+    -ofile  :输出文件，默认保存到./result下
+    -dpath :字典路径
+    
+> 语法参考：
+
+    goon_amd64_windows.exe -mode backscan -ifile ips.txt -dpath back.txt
+    
+## 0x048 brute 模块
+
+> 对资产进行爆破，支持ftp爆破、mssq爆破、mysql爆破、postgres爆破、redis爆破、ssh爆破。
+
+> 参数如下：
+
+    -thread:默认从配置文件读取
+    -ifile :扫描文件，按行保存
+    -ofile  :输出文件，默认保存到./result下
+    
+> 语法参考：
+
+    goon_amd64_windows.exe -mode brute -ifile ips.txt
 
 # 0x05 结语
   

@@ -1,5 +1,5 @@
 # 2021-06-28 goon_beta_v1
-> 1、完成portscan、titlescan、dirscan、fofascan、pluginscan、autoscan
+> 1、完成portscan、titlescan、dirscan、fofascan、pluginscan、autoscan功能
 
 # 2021-06-30 goon_beta_v1.1
 > 1、删除fofa自动获资产功能  
@@ -19,5 +19,11 @@
 > 2、 解决了一些小 bug
 
 # 2021-07-06 goon_beta_v1.3
-1、 优化 titlescan
-2、 解决了一些小 bug
+> 1、 优化 titlescan  
+> 2、 解决了一些小 bug
+
+# 2021-07-22 goon_beta_v2.0
+> 1、 新增主机存活探测(ipscan)
+> 2、 新增备份文件扫描(backscan)
+> 3、 新增爆破模块(brute),包括ssh、redis、mysql、mssql、ftp及postgres爆破
+> 4、 修改了pluginscan的匹配机制，新增了一批内网渗透常见指纹

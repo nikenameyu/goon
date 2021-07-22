@@ -1,0 +1,220 @@
+name: webinfo
+And: false
+rules:
+- method: GET
+  path: /
+  follow_redirects: true
+  expressions:
+  - expression:
+    - headers: KEY_RANDOMDATA
+    - body: /static/images/tongda.ico
+    - body: http://www.tongda2000.com
+    - body: 通达OA移动版
+    output: 通达OA
+  - expression:
+    - body: Citrix Web PN Server
+    - body: Citrix Access Gateway
+    - body: Citrix Systems, Inc. XenServer
+    - body: ns_af
+    - body: confproxy
+    - body: NS-CACHE
+    output: Citrix
+  - expression:
+    - body: Nexus Repository Manager
+    - headers: NX-ANTI-CSRF-TOKEN
+    output: Nexus
+  - expression:
+    - headers: pma_lang
+    - headers: phpMyAdmin
+    - body: /themes/pmahomme/img/logo_right.png
+    output: phpMyAdmin
+  - expression:
+    - headers: rememberMe=
+    - headers: =deleteMe
+    output: Shiro
+  - expression:
+    - body: <h1>Apache Tomcat
+    search: Apache Tomcat.*?/(\d*\.*\d*)
+    output: Tomcat {{search}}
+  - expression:
+    - headers: ecology_JSessionid
+    - body: /spa/portal/public/index.js
+    output: 泛微OA
+  - expression:
+    - headers: EMobileServer
+    - body: Weaver E-mobile
+    - body: weaver,e-mobile
+    output: 泛微E-mobile
+  - expression:
+    - body: e-Bridge,http://wx.weaver
+    output: weaver-ebridge
+  - expression:
+    - headers: "Server:WebLogic"
+    - body: <i>Hypertext Transfer Protocol -- HTTP/1.1</i>)
+    - body: Welcome to Weblogic Application Server
+    - body: /console/framework/skins/wlsconsole/images/login_WebLogic_branding.png
+    search: WebLogic[\s]*Server([\s]*[\d\.\d]*[\s]*)[\s]*
+    output: WebLogic {{search}}
+  - expression:
+    - headers: LocLan
+    - body: css/css_whir.css
+    output: whir
+  - expression:
+    - body: images/general/zabbix.ico
+    - body: Zabbix SIA
+    - headers: zbx_sessionid
+    output: zabbix
+  - expression:
+    - body: Powered by 协众OA
+    - headers: CNOAOASESSID
+    output: 协众OA
+  - expression:
+    - body: /scripts/jquery.landray.common.js
+    output: 蓝凌EIS智慧协同平台
+  - expression:
+    - headers: easSessionId
+    output: 金蝶EAS
+  - expression:
+    - body: app.bt.cn/static/app.png
+    - body: 安全入口校验失败
+    output: 宝塔-BT
+  - expression:
+    - headers: atmail6
+    - body: Powered by Atmail
+    - body: /index.php/mail/auth/processlogin
+    output: atmail-WebMail
+  - expression:
+    - body: 金和协同管理平台
+    output: 金和协同管理平台
+  - expression:
+    - body: logo-icon-ico72.png
+    - body: resources/themes/images/logo-login.png
+    output: 齐治堡垒机
+  - expression:
+    - headers: ThinkPHP
+    - body: /Public/static/js/
+    output: ThinkPHP
+  - expression:
+    - headers: laravel_session
+    output: Laravel
+  - expression:
+    - body: 大汉版通发布系统
+    - body: 大汉网络
+    output: 大汉版通发布系统
+  - expression:
+    - body: druid.index
+    - body: Druid Stat Index
+    output: druid
+  - expression:
+    - body: Jenkins
+    output: Jenkins
+  - expression:
+    - body: iOffice
+    output: 红帆OA
+  - expression:
+    - body: VMware vSphere
+    output: VMware vSphere
+  - expression:
+    - body: 蓝凌软件
+    - body: StylePath:\"/resource/style/default/\"
+    - body: /resource/customization
+    output: 蓝凌OA
+  - expression:
+    - body: YONYOU NC
+    - body: /Client/Uclient/UClient.dmg
+    output: 用友NC
+  - expression:
+    - body: iufo/web/css/menu.css
+    output: 用友IUFO
+  - expression:
+    - body: /loginmain4/js/jquery.min.js
+    output: 海昌OA
+  - expression:
+    - body: Welcome to JBoss EAP
+    - headers: Server:JBoss-EAP
+    search: JBoss EAP (\d)*
+    output: JBoss EAP {{search}}
+  - expression:
+    - headers: /JBossWeb-
+    search: JBossWeb-([\s]*[\d\.\d]*[\s]*)
+    output: JBoss web {{search}}
+- method: GET
+  path: /zentao/index.php?mode=getconfig
+  follow_redirects: true
+  expressions:
+  - And: true
+    expression:
+    - body: version
+    - body: requestType
+    search: \"version\":\"(.*?)\",
+    output: zentao {{search}}
+  - expression:
+    - headers: zentaosid
+    - body: /theme/default/images/main/zt-logo.png
+    output: zentao
+- method: GET
+  path: /seeyon/index.jsp
+  follow_redirects: true
+  expression:
+  - body: /seeyon/common/
+  - code: 200
+    headers: loginPageURL=
+  - headers: Server:Seeyon-Server
+  search: (V\d*\.\d*SP\d*)
+  output: Seeyon {{search}}
+- method: GET
+  path: /struts/webconsole.html
+  follow_redirects: true
+  expression:
+  - body: Welcome to the OGNL console
+  output: Struts2
+- method: GET
+  path: /?actionErrors=notfoundnotfound
+  follow_redirects: true
+  expression:
+  - body: Struts Problem Report
+  - body: org.apache.struts2
+  - body: struts.devMode
+  - body: struts-tags
+  - body: There is no Action mapped for namespace
+  output: Struts2
+- method: GET
+  path: /system/index!notfoundnotfound.action
+  follow_redirects: true
+  expression:
+  - body: Struts Problem Report
+  - body: org.apache.struts2
+  - body: struts.devMode
+  - body: struts-tags
+  - body: There is no Action mapped for namespace
+  output: Struts2
+- method: GET
+  path: /system/index!notfoundnotfound.do
+  follow_redirects: true
+  expression:
+  - body: Struts Problem Report
+  - body: org.apache.struts2
+  - body: struts.devMode
+  - body: struts-tags
+  - body: There is no Action mapped for namespace
+  output: Struts2
+- method: GET
+  path: /notfoundnotfound.do
+  follow_redirects: true
+  expression:
+  - body: Struts Problem Report
+  - body: org.apache.struts2
+  - body: struts.devMode
+  - body: struts-tags
+  - body: There is no Action mapped for namespace
+  output: Struts2
+- method: GET
+  path: /notfoundnotfound.action
+  follow_redirects: true
+  expression:
+  - body: Struts Problem Report
+  - body: org.apache.struts2
+  - body: struts.devMode
+  - body: struts-tags
+  - body: There is no Action mapped for namespace
+  output: Struts2

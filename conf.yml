@@ -1,0 +1,88 @@
+portscan:
+  thread: 100
+  ports: 8000-9000
+  timeout: 5
+titlescan:
+  thread: 100
+  follow_redirects: true
+  timeout: 30
+dirscan:
+  dir: "null"
+  follow_redirects: false
+  code: 200
+  header: "null"
+  body: "null"
+  thread: 100
+  timeout: 30
+fofascan:
+  email: "null"
+  key: "null"
+  num: 100
+  fields: host
+pluginscan:
+  dpath: ./plugin
+  thread: 100
+  timeout: 30
+ipscan:
+  thread: 100
+  timeout: 5
+# autoscan说明:
+# 以ipscan为例,true表示进行autoscan时,会执行ipscan,反之不执行ipscan
+# autoscan顺序:
+# brute:爆破模块,输入文件为ipscan输出文件,若ipscan未开启,则为用户输入的ifile文件
+# portscan:web扫描,输入文件为ipscan输出文件,若ipscan未开启,则为用户输入的ifile文件
+# titlescan,pluginScan,backscan的输入文件为portscan的输出文件,若portscan未开启,则为用户输入的ifile文件
+autonscan:
+  ipscan: true
+  portscan: true
+  titleScan: true
+  pluginScan: true
+  backscan: true
+  brute: true
+backscan:
+  dpath: ./dic/back.txt
+  thread: 100
+  timeout: 10
+# brute说明:
+#  check参数，表示是否启用端口指纹识别，推荐在不确定爆破目标端口指纹或爆破类型不唯一的情况下启用
+#   如:开启所有爆破模块时建议开启check，只对ssh资产进行ssh爆破时建议关闭check，对未知资产进行ssh爆破时建议开启check
+# 模块说明：
+#  以redis为例，
+#   run表示是否开启redis扫描
+#   pass表示密码字典
+#   port表示默认端口，当爆破目标没有指定端口时使用默认端口
+#     如对127.0.0.1进行redis爆破，则使用6379端口
+#     如对127.0.0.1:6378进行redis爆破,则使用6378端口
+brute:
+  thread: 100
+  timeout: 5
+  check: true
+  redis:
+    run: true
+    pass: ./dic/redis.txt
+    port: "6379"
+  ssh:
+    run: true
+    user: ./dic/ssh_user.txt
+    pass: ./dic/ssh_pass.txt
+    port: "22"
+  ftp:
+    run: true
+    user: ./dic/ftp_user.txt
+    pass: ./dic/ftp_pass.txt
+    port: "21"
+  mysql:
+    run: true
+    user: ./dic/mysql_user.txt
+    pass: ./dic/mysql_pass.txt
+    port: "3306"
+  mssql:
+    run: true
+    user: ./dic/mssql_user.txt
+    pass: ./dic/mssql_pass.txt
+    port: "1433"
+  postgres:
+    run: true
+    user: ./dic/postgres_user.txt
+    pass: ./dic/postgres_pass.txt
+    port: "5432"

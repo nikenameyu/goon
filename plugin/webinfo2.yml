@@ -1,0 +1,11 @@
+name: webinfo2
+And: false
+rules:
+- method: POST
+  path: /
+  body: /
+  follow_redirects: true
+  expressions:
+  - expression:
+    - body: alibaba.fastjson
+    output: fastjson

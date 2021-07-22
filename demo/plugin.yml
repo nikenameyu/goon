@@ -1,36 +1,56 @@
-name: "zentao"                                #plugin名
-and: true                                     #rules规则，true表示所有rule匹配则返回true并打印output，false表示只要有一个rule匹配就返回true并打印output
-rules:                                        #rules
-- method: GET                                 #http请求方式，支持GET和POST
-  path: "/zentao/index.php?mode=getconfig"    #http请求路径
-  follow_redirects: false                     #是否重定向
-  headers:                                    #头部信息
-    Accept: "null"
-    Accept-Encoding: "null"
-    Accept-Language: "null"
-    Authorization: "null"
-    Cache-Control: "null"
-    Connection: "null"
-    Content-Length: "null"
-    Content-Type: "null"
-    Host: "{{host}}"                        #调用host
-    Origin: "null"
-    Pragma: "null"
-    Referer: "null"
-    User-Agent: "null"
-    Cookie: "null"
-    Proxy-Connection: "null"
-  expression:                                 #匹配返回的信息
-    code: 200                                 #请求返回的状态码status_code
-    header: Apache                            #请求返回的header
-    body: "version"                           #请求返回的body
-  output: "cms:zentao-01"
-- method: POST
-  path: "{{host}}/login.jsp"                 #调用host
-  follow_redirects: false
-  body: |                                     #请求体
-    "user=i11us0ry&&pass=i11us0ry"
-  expression:
-    code: 200
-    body: "success"
-  output: "login success"
+# plugin的目的是做指纹识别及轻量级漏洞验证,固不会增加太多功能
+name: webinfo
+# 此处And表示的是下面rules的逻辑,为false时只要其中一个rule为真,则扫描为真,适用于指纹识别
+# And为true为true时表示所有rule为真,则扫描为真,适用于漏洞验证
+And: false
+# rule,规则库,以method开头
+rules:
+  # 请求方式,支持get和post
+- method: GET
+  # 请求路径
+  path: /
+  # 是否重定向
+  follow_redirects: true
+  # expressions,匹配库,根据请求返回的数据进行匹配,以And开头
+  expressions:
+    # expression的逻辑,为false时表示expression下只要有一条规则匹配,则为真
+    # 为true时表示expression下所有规则匹配,则为真
+  - And: false
+    expression:
+      # expression的规则是数组类型,每一条规则包含code,header和body
+      # 以下面为例,根据返回内容进行规则匹配,共4条规则
+      # 1:返回code为200且header包含KEY_RANDOMDATA
+      # 2:返回body包含/static/images/tongda.ico
+      # 3:返回body包含http://www.tongda2000.com
+      # 4:返回body包含通达OA移动版
+      # 此处expression的逻辑为false,所以只要以上4条中的任意一条规则匹配成功,就为真
+    - headers: KEY_RANDOMDATA
+      code: 200
+    - body: /static/images/tongda.ico
+    - body: http://www.tongda2000.com
+    - body: 通达OA移动版
+    # 匹配成功后打印的信息
+    output: 通达OA
+  - expression:
+    - body: Citrix Web PN Server
+    - body: Citrix Access Gateway
+    - body: Citrix Systems, Inc. XenServer
+    - body: ns_af
+    - body: confproxy
+    - body: NS-CACHE
+    output: Citrix
+- method: GET
+  path: /zentao/index.php?mode=getconfig
+  follow_redirects: true
+  expressions:
+  - And: true
+    expression:
+    - body: version
+    - body: requestType
+    # 根据返回的header或body进行正则匹配,将匹配结果传给output打印,通常是为了识别版本
+    search: \"version\":\"(.*?)\",
+    output: zentao {{search}}
+  - expression:
+    - headers: zentaosid
+    - body: /theme/default/images/main/zt-logo.png
+    output: zentao
