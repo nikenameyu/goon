@@ -131,7 +131,21 @@
 
     goon_amd64_windows.exe -mode backscan -ifile ips.txt -dpath back.txt
     
-## 0x048 brute 模块
+## 0x048 ipscan 模块
+
+> 对ip进行存活。
+
+> 参数如下：
+
+    -thread:默认从配置文件读取
+    -ifile :扫描文件，ip按行保存
+    -ofile :输出文件，默认保存到./result下
+    
+> 语法参考：
+
+    goon_amd64_windows.exe -mode ipscan -ifile ips.txt
+    
+## 0x049 brute 模块
 
 > 对资产进行爆破，支持ftp爆破、mssq爆破、mysql爆破、postgres爆破、redis爆破、ssh爆破。
 
