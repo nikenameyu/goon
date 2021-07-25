@@ -28,4 +28,8 @@
 > 3、 新增爆破模块(brute),包括ssh、redis、mysql、mssql、ftp及postgres爆破
 > 4、 修改了pluginscan的匹配机制，新增了一批内网渗透常见指纹
 
+# 2021-07-25 goon_beta_v2.1
+> 1、 解决titlescan的小bug
+> 2、 新增waf指纹
+
 # 下一步更新计划:自定义poc扫描(基于go的)
