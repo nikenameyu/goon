@@ -23,13 +23,13 @@
 > 2、 解决了一些小 bug
 
 # 2021-07-22 goon_beta_v2.0
-> 1、 新增主机存活探测(ipscan)
-> 2、 新增备份文件扫描(backscan)
-> 3、 新增爆破模块(brute),包括ssh、redis、mysql、mssql、ftp及postgres爆破
-> 4、 修改了pluginscan的匹配机制，新增了一批内网渗透常见指纹
+> 1、 新增主机存活探测(ipscan)  
+> 2、 新增备份文件扫描(backscan)  
+> 3、 新增爆破模块(brute),包括ssh、redis、mysql、mssql、ftp及postgres爆破  
+> 4、 修改了pluginscan的匹配机制，新增了一批内网渗透常见指纹  
 
 # 2021-07-25 goon_beta_v2.1
-> 1、 解决titlescan的小bug
-> 2、 新增waf指纹
+> 1、 解决titlescan的小bug  
+> 2、 新增waf指纹  
 
 # 下一步更新计划:自定义poc扫描(基于go的)
