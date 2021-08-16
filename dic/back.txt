@@ -38,10 +38,6 @@ sql.tar.gz
 sql.zip
 sql.rar
 sql.7z
-back.tar.gz
-back.zip
-back.rar
-back.7z
 file.tar.gz
 file.zip
 file.rar
@@ -50,3 +46,15 @@ backup.tar.gz
 backup.zip
 backup.rar
 backup.7z
+bin.tar.gz
+bin.zip
+bin.rar
+bin.7z
+release.tar.gz
+release.zip
+release.rar
+release.7z
+upload.tar.gz
+upload.zip
+upload.rar
+upload.7z
