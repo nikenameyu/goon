@@ -1,4 +1,3 @@
-# webinfo1
 name: webinfo
 And: false
 rules:
@@ -33,6 +32,10 @@ rules:
     - headers: rememberMe=
     - headers: =deleteMe
     output: Shiro
+  - expression:
+    - body: RG-EG易网关
+      headers: nginx
+    output: 锐捷EG易网关
   - expression:
     - body: <h1>Apache Tomcat
     search: Apache Tomcat.*?/(\d*\.*\d*)
