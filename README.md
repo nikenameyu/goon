@@ -158,6 +158,15 @@
 
     goon_amd64_windows.exe -mode brute -ifile ips.txt
 
-# 0x05 结语
-  
-> 1、欢迎各位师傅提供宝贵意见
+## 0x050 awvs 模块
+
+> 联动awvs平台，在配置文件中配置awvs地址和key即可，基于awvs 13写的
+> 参数如下：
+
+    -ifile :要添加到awvs扫描的资产文件，资产按行保存
+    -del :删除扫描目标,默认false
+
+> 语法参考：
+
+    goon_amd64_windows.exe -mode awvs -ifile urls.txt
+    goon_amd64_windows.exe -mode awvs -del true
