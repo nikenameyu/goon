@@ -1,4 +1,0 @@
-ftp
-root
-admin
-user
