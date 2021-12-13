@@ -27,7 +27,7 @@ goon,集合了fscan和kscan等优秀工具功能的扫描爆破工具。功能�
   finger:         web指纹
   dir:            单路径扫描
   back:           压缩文件扫描
-  tomcat:		  tomcat爆破
+  tomcat:         tomcat爆破
   ftp:            ftp爆破,其他ms17010,mssql,mysql,postgres,redis,ssh,smb,rdp,telnet同理
   netbios:        netbios探测
 ```
