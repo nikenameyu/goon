@@ -7,7 +7,7 @@
                                 \__, /\____/\____/_/ /_/
                                 /___/
 
-                                        goon v3.0
+                                        goon v3
                                         by:i11us0ry
 ---------------------------------------------------------------------------------------------
 
@@ -17,13 +17,13 @@ goon,集合了fscan和kscan等优秀工具功能的扫描爆破工具。功能�
 ## 帮助
 可选mode如下:
 ```
-  all:            默认选项,包含ip-port(web)-title-finger-ftp-ms17010-mssql-mysql-postgres-redis-ssh-smb-rdp-telnet-netbios
+  all:            默认选项,包含ip-port(web)-title-finger-back-ftp-ms17010-mssql-mysql-postgres-redis-ssh-smb-rdp-telnet-netbios
   webscan:        包含ip-port(web)-title-finger
   brute:          包含ip-ftp-ms17010-mssql-mysql-postgres-redis-ssh-smb-rdp-telnet
   ip:             ip探活,执行-np可绕过探活
   port:           端口扫描,执行-web直接探测http/https
   fofa:           fofa资产获取,执行-web输出host时添加http(fields为多个时host放在最后一位)
-  title:          title
+  title:          title扫描
   finger:         web指纹
   dir:            单路径扫描
   back:           压缩文件扫描
@@ -58,6 +58,12 @@ goon,集合了fscan和kscan等优秀工具功能的扫描爆破工具。功能�
 ```
 
 ## 更新
+- 2022年03月01日 v3.3
+   - 优化redis爆破出错问题
+   - 优化netbios扫描超时问题
+   - ip探活改为先探测.1和.255的方式
+   - 日志输出改英文避免乱码
+
 - 2022年02月21日 v3.2
    - 更新fofa接口，每次请求添加了0.5s的间隔
 
