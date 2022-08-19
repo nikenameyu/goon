@@ -56,16 +56,16 @@ goon,集合了fscan和kscan等优秀工具功能的扫描爆破工具。
 
 #### 编译说明：
 - 只提供win、linux、mac下amd64的编译成品，若不能满足需求可自行编译。
-- 关于自行编译可能遇到的问题和解决方案如下：
+  - 关于自行编译可能遇到的问题和解决方案如下：
 
 - 执行mysql爆破时日志打印如下信息：
 `wsarecv: An existing connection was forcibly closed by the remote host.`
-- 解决方案：注释掉如下代码后重新编译（依赖问题）
+  - 解决方案：注释掉如下代码后重新编译（依赖问题）
 `github.com/go-sql-driver/mysql/packets.go 中注释 errLog.Print(err) `
 
 - 执行http请求时日志打印如下信息：
 `Unsolicited response received on idle HTTP channel starting with`
-- 解决方案：注释掉如下代码后重新编译（依赖问题）
+  - 解决方案：注释掉如下代码后重新编译（依赖问题）
 `net/http/transport.go 中 log.Printf("Unsolicited response received on idle HTTP channel starting with %q; err=%v", buf, peekErr)`
 
 #### 其他说明
