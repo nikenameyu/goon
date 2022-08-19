@@ -56,7 +56,7 @@ goon,集合了fscan和kscan等优秀工具功能的扫描爆破工具。
 
 #### 编译说明：
 - 只提供win、linux、mac下amd64的编译成品，若不能满足需求可自行编译。
-  - 关于自行编译可能遇到的问题和解决方案如下：
+- 关于自行编译可能遇到的问题和解决方案如下：
 
 - 执行mysql爆破时日志打印如下信息：
 `wsarecv: An existing connection was forcibly closed by the remote host.`
@@ -70,13 +70,13 @@ goon,集合了fscan和kscan等优秀工具功能的扫描爆破工具。
 
 #### 其他说明
 - 问题：linux下报错open too many files
-- 解决：参考https://blog.csdn.net/whatday/article/details/104166669（linux问题）
+  - 解决：参考https://blog.csdn.net/whatday/article/details/104166669（linux问题）
  
 - 问题：goon执行直接报错，加上-np不报错
-- 解决：执行goon的权限太低
+  - 解决：执行goon的权限太低
 
 - 问题：乱七八糟的
-- 解决：提issues，我会尽快验证修复
+  - 解决：提issues，我会尽快验证修复
 
 #### 参数说明：
 
